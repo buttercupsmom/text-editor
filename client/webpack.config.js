@@ -28,7 +28,7 @@ module.exports = () => {
         swDest: "src-sw.js",
       }),
       new WebpackPwaManifest({
-        name: "content",
+        name: "j.a.t.e.",
         description: "text editor where you can type text",
         background_color: "#EDEDE6",
         theme_color: "#01291A",
