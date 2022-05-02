@@ -7,24 +7,30 @@ module.exports = () => {
   return {
     mode: "development",
     entry: {
+      // Entry point for files
       main: "./src/js/index.js",
       install: "./src/js/install.js",
     },
+    // Outout for our bundles
     output: {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
     },
 
     plugins: [
+      // Webpack plugin that generates html file and injects our bundles
       new HtmlWebpackPlugin({
         template: "./index.html",
         title: "Text Editor",
       }),
 
+      // Injects our customer service worker
       new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
       }),
+
+      // Creates  manifest.json file
       new WebpackPwaManifest({
         name: "j.a.t.e.",
         description: "text editor where you can type text",
@@ -45,6 +51,7 @@ module.exports = () => {
     ],
 
     module: {
+      // CSS loaders
       rules: [
         {
           test: /\.css$/i,
@@ -53,6 +60,7 @@ module.exports = () => {
         {
           test: /\.mjs$/,
           exclude: /node_modules/,
+          // We use babel-loader in order to use ES6
           use: {
             loader: "babel-loader",
             options: {
